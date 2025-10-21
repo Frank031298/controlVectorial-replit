@@ -1,0 +1,105 @@
+1). El modo oscuro tiene sus deficiencias en algunas partes de la web.
+2). carga y muestra datos el sistema, después de ello me da el siguiente error:
+ValueError: Value of 'hover_data_1' is not the name of a column in 'data_frame'. Expected one of ['_id_x', '_uid', '_createdAt_x', 'sector', 'fecha_inspeccion', 'nombre_inspector', 'tipoActividadInspeccion', 'hora_ingreso', 'hora_salida', 'usuario_registra', 'estado_inspeccion', 'estado_x', 'nombre_de_la_inspeccion', 'localidad_eess', '_id_y', '_createdAt_y', 'fidInspeccion', 'georeferencia_X', 'georeferencia_Y', 'codigo_manzana', 'direccion', 'persona_atiende', 'numero_residentes', 'tanque_alto_I', 'tanque_alto_P', 'tanque_alto_TQ', 'tanque_alto_TF', 'tanque_bajo_I', 'tanque_bajo_P', 'tanque_bajo_TQ', 'tanque_bajo_TF', 'barril_cilindro_I', 'barril_cilindro_P', 'barril_cilindro_TQ', 'barril_cilindro_TF', 'sanson_bidon_I', 'sanson_bidon_P', 'sanson_bidon_TQ', 'sanson_bidon_TF', 'baldes_bateas_tinajas_I', 'baldes_bateas_tinajas_P', 'baldes_bateas_tinajas_TQ', 'llantas_I', 'llantas_P', 'llantas_TQ', 'llantas_TF', 'floreros_maceteros_I', 'floreros_maceteros_P', 'latas_botellas_P', 'latas_botellas_TQ', 'latas_botellas_TF', 'otros_I', 'otros_P', 'otros_TQ', 'otros_TF', 'otros_D', 'consumo_larvicida', 'febriles', 'atencion_vivienda_indicador', 'usuario_registro', 'estado_y', 'baldes_bateas_tinajas_TF', 'floreros_maceteros_TQ', 'floreros_maceteros_TF', 'latas_botellas_I', 'latas_botellas_D', 'viv_positiva', 'fecha_creacion', 'nombreFamilia', 'referencia', 'usuario_asignado', 'inservibles_I', 'inservibles_P', 'inservibles_TQ', 'inservibles_TF', 'recuperacion_fecha', 'recuperacion_fecha_asignacion', 'recuperacion_usuario_asignado', 'recuperacion_vivienda_indicador_ini', 'recuperacion_X', 'recuperacion_Y', 'recuperada', 'cod_renipress', 'ubigeo', 'cod_dep', 'departamento_x', 'departamento_y', 'nombre_prov', 'cod_prov', 'provincia', 'distrito', 'year', 'month_year', 'color', 'status'] but received: dirección
+Traceback:
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/app.py", line 153, in <module>
+    main()
+File "/home/runner/workspace/app.py", line 119, in main
+    vigilancia_tab.render()
+File "/home/runner/workspace/components/vigilancia_tab.py", line 79, in render
+    self.render_map_tab(filtered_data)
+File "/home/runner/workspace/components/vigilancia_tab.py", line 212, in render_map_tab
+    fig = self.viz_helper.create_map_visualization(filtered_data)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/utils/visualizations.py", line 246, in create_map_visualization
+    fig = px.scatter_mapbox(
+          ^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_chart_types.py", line 1432, in scatter_mapbox
+    return make_figure(args=locals(), constructor=go.Scattermapbox)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 2491, in make_figure
+    args = build_dataframe(args, constructor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1737, in build_dataframe
+    df_output, wide_id_vars = process_args_into_dataframe(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1338, in process_args_into_dataframe
+    raise ValueError(err_msg)
+
+3). En la pestaña "Control Larvario" y "Cerco", me muestra el siguiente error:
+ValueError: Value of 'hover_data_1' is not the name of a column in 'data_frame'. Expected one of ['_id_x', '_uid', '_createdAt_x', 'sector', 'fecha_inspeccion', 'nombre_inspector', 'tipoActividadInspeccion', 'hora_ingreso', 'hora_salida', 'usuario_registra', 'estado_inspeccion', 'estado_x', 'nombre_de_la_inspeccion', 'localidad_eess', '_id_y', '_createdAt_y', 'fidInspeccion', 'georeferencia_X', 'georeferencia_Y', 'codigo_manzana', 'direccion', 'persona_atiende', 'numero_residentes', 'tanque_alto_I', 'tanque_alto_P', 'tanque_alto_TQ', 'tanque_alto_TF', 'tanque_bajo_I', 'tanque_bajo_P', 'tanque_bajo_TQ', 'tanque_bajo_TF', 'barril_cilindro_I', 'barril_cilindro_P', 'barril_cilindro_TQ', 'barril_cilindro_TF', 'sanson_bidon_I', 'sanson_bidon_P', 'sanson_bidon_TQ', 'sanson_bidon_TF', 'baldes_bateas_tinajas_I', 'baldes_bateas_tinajas_P', 'baldes_bateas_tinajas_TQ', 'llantas_I', 'llantas_P', 'llantas_TQ', 'llantas_TF', 'floreros_maceteros_I', 'floreros_maceteros_P', 'latas_botellas_P', 'latas_botellas_TQ', 'latas_botellas_TF', 'otros_I', 'otros_P', 'otros_TQ', 'otros_TF', 'otros_D', 'consumo_larvicida', 'febriles', 'atencion_vivienda_indicador', 'usuario_registro', 'estado_y', 'baldes_bateas_tinajas_TF', 'floreros_maceteros_TQ', 'floreros_maceteros_TF', 'latas_botellas_I', 'latas_botellas_D', 'viv_positiva', 'fecha_creacion', 'nombreFamilia', 'referencia', 'usuario_asignado', 'inservibles_I', 'inservibles_P', 'inservibles_TQ', 'inservibles_TF', 'recuperacion_fecha', 'recuperacion_fecha_asignacion', 'recuperacion_usuario_asignado', 'recuperacion_vivienda_indicador_ini', 'recuperacion_X', 'recuperacion_Y', 'recuperada', 'cod_renipress', 'ubigeo', 'cod_dep', 'departamento_x', 'departamento_y', 'nombre_prov', 'cod_prov', 'provincia', 'distrito', 'year', 'month_year', 'color', 'status'] but received: dirección
+Traceback:
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/app.py", line 153, in <module>
+    main()
+File "/home/runner/workspace/app.py", line 119, in main
+    vigilancia_tab.render()
+File "/home/runner/workspace/components/vigilancia_tab.py", line 79, in render
+    self.render_map_tab(filtered_data)
+File "/home/runner/workspace/components/vigilancia_tab.py", line 212, in render_map_tab
+    fig = self.viz_helper.create_map_visualization(filtered_data)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/utils/visualizations.py", line 246, in create_map_visualization
+    fig = px.scatter_mapbox(
+          ^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_chart_types.py", line 1432, in scatter_mapbox
+    return make_figure(args=locals(), constructor=go.Scattermapbox)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 2491, in make_figure
+    args = build_dataframe(args, constructor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1737, in build_dataframe
+    df_output, wide_id_vars = process_args_into_dataframe(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1338, in process_args_into_dataframe
+    raise ValueError(err_msg)
+
+
+4). La pestaña "Mapa" da el error:
+ValueError: Value of 'hover_data_1' is not the name of a column in 'data_frame'. Expected one of ['_id_x', '_uid', '_createdAt_x', 'sector', 'fecha_inspeccion', 'nombre_inspector', 'tipoActividadInspeccion', 'hora_ingreso', 'hora_salida', 'usuario_registra', 'estado_inspeccion', 'estado_x', 'nombre_de_la_inspeccion', 'localidad_eess', '_id_y', '_createdAt_y', 'fidInspeccion', 'georeferencia_X', 'georeferencia_Y', 'codigo_manzana', 'direccion', 'persona_atiende', 'numero_residentes', 'tanque_alto_I', 'tanque_alto_P', 'tanque_alto_TQ', 'tanque_alto_TF', 'tanque_bajo_I', 'tanque_bajo_P', 'tanque_bajo_TQ', 'tanque_bajo_TF', 'barril_cilindro_I', 'barril_cilindro_P', 'barril_cilindro_TQ', 'barril_cilindro_TF', 'sanson_bidon_I', 'sanson_bidon_P', 'sanson_bidon_TQ', 'sanson_bidon_TF', 'baldes_bateas_tinajas_I', 'baldes_bateas_tinajas_P', 'baldes_bateas_tinajas_TQ', 'llantas_I', 'llantas_P', 'llantas_TQ', 'llantas_TF', 'floreros_maceteros_I', 'floreros_maceteros_P', 'latas_botellas_P', 'latas_botellas_TQ', 'latas_botellas_TF', 'otros_I', 'otros_P', 'otros_TQ', 'otros_TF', 'otros_D', 'consumo_larvicida', 'febriles', 'atencion_vivienda_indicador', 'usuario_registro', 'estado_y', 'baldes_bateas_tinajas_TF', 'floreros_maceteros_TQ', 'floreros_maceteros_TF', 'latas_botellas_I', 'latas_botellas_D', 'viv_positiva', 'fecha_creacion', 'nombreFamilia', 'referencia', 'usuario_asignado', 'inservibles_I', 'inservibles_P', 'inservibles_TQ', 'inservibles_TF', 'recuperacion_fecha', 'recuperacion_fecha_asignacion', 'recuperacion_usuario_asignado', 'recuperacion_vivienda_indicador_ini', 'recuperacion_X', 'recuperacion_Y', 'recuperada', 'cod_renipress', 'ubigeo', 'cod_dep', 'departamento_x', 'departamento_y', 'nombre_prov', 'cod_prov', 'provincia', 'distrito', 'year', 'month_year', 'color', 'status'] but received: dirección
+Traceback:
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/app.py", line 153, in <module>
+    main()
+File "/home/runner/workspace/app.py", line 119, in main
+    vigilancia_tab.render()
+File "/home/runner/workspace/components/vigilancia_tab.py", line 79, in render
+    self.render_map_tab(filtered_data)
+File "/home/runner/workspace/components/vigilancia_tab.py", line 212, in render_map_tab
+    fig = self.viz_helper.create_map_visualization(filtered_data)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/utils/visualizations.py", line 246, in create_map_visualization
+    fig = px.scatter_mapbox(
+          ^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_chart_types.py", line 1432, in scatter_mapbox
+    return make_figure(args=locals(), constructor=go.Scattermapbox)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 2491, in make_figure
+    args = build_dataframe(args, constructor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1737, in build_dataframe
+    df_output, wide_id_vars = process_args_into_dataframe(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/plotly/express/_core.py", line 1338, in process_args_into_dataframe
+    raise ValueError(err_msg)
+
+
+5). Necesito que soluciones todos estos errores y que añadas un apartado independiente (u pestaña) por inspector, en donde se podrá filtrar por numero de DNI el cual la columna con esta información es "usuario_registra". Aquí se debe mostrar todo lo que el inspector ha inspeccionado.
+
+6). Del numeral 4 para que muestres el mapa debes de tomar los datos de la columna "georeferencia_X" (latitud) y "georeferencia_Y" (longitud)

@@ -1,0 +1,250 @@
+1). Quisiera saber si es posible aumentar el tamaño de archivo de importación. Actualmente tengo mas de 80000 registros y pesa 113MB. 
+1.1). Una vez se llene de mas información pasará los 200MB limite que permite el sistema
+
+2). Me salen los siguientes errores:
+Filtros de Búsqueda
+AttributeError: 'list' object has no attribute 'tolist'
+Traceback:
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/app.py", line 93, in <module>
+    main()
+File "/home/runner/workspace/app.py", line 59, in main
+    vigilancia_tab.render()
+File "/home/runner/workspace/components/vigilancia_tab.py", line 19, in render
+    filters = self.filter_component.render_filters('vigilancia')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/components/filters.py", line 20, in render_filters
+    years = self.data_processor.get_unique_values('year')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/workspace/utils/data_processor.py", line 107, in get_unique_values
+    return unique_values.tolist()
+           ^^^^^^^^^^^^^^^^^^^^
+
+
+3) Ahora para la segunda pestaña que será "Control Larvario" debe de existir lo siguiente:
+Este sistema debe de ser capaz de:
+1). procesar información de mas de 150000 registros
+
+En la segunda pestaña que será "Control Larvario" debe de existir lo siguiente:
+1). filtrar por Año [el cual será tomado de "fecha_inspeccion (tipo de fecha y hora)"]
+2). Filtrar por Departamento [el cual será tomado de "departamento_x (Tipo Texto)"]
+3). Filtrar por Provincia [el cual será tomado de "nombre_prov (Tipo texto)"]
+4). Filtrar por Distrito [el cual será tomado de "distrito (Tipo Texto)"]
+5). Filtrar por Codigo de renipress [el cual será tomado de "cod_renipress (Tipo numerico)"]
+6). Filtrar por localidad del establecimiento de salud [el cual será tomado de "localidad_eess (Tipo Texto)"]
+Los filtros deben de ser mostradas en una lista desplegable el cual esté ordenado alfabéticamente (A-Z) o numérica (0-9) y tenga un buscador incorporado para escribir el nombre a filtrar; asi mismo, el sistema debe de ser dinamico, por cada filtro seleccionado debe de mostrar información en el dashboard o dashboards. 
+Para esta pestaña obtendrás los datos de la columna "tipoActividadInspeccion (Tipo texto)" el cual obtendrás el nombre "Control larvario".
+
+El sistema debe de realizar un calculo para poder obtener el porcentaje de cobertura de viviendas Inspeccionadas, cerradas, renuentes, deshabitadas y no intervenidas.
+Para ello también obtendrás los datos que te dejo al final de los establecimientos de salud con su código identificador (único) y su total de viviendas.
+
+Para esto obtendrás los datos de "tipoActividadInspeccion" el cual obtendrá solo los datos de "Control larvario" y de la columna "atencion_vivienda_indicador" (Tipo numerico) encontraras numeracion del 1 al 4, en donde:
+1 = Vivienda Inspeccionada
+2 = Vivienda Cerrada
+3 = Vivienda Renuente
+4 = Vivienda Deshabitada
+
+Y de la columna "viv_positiva" (Tipo numerico) encontraras dos numeros, siendo:
+0 = No es vivienda positiva
+1 = Si es vivienda positiva
+
+En ese sentido, debes realizar el calculo de cobertura de las viviendas Inspeccionadas, cerradas, renuentes, deshabitadas y no intervenidas de cada establecimiento de salud teniendo en cuenta la ["localidad_eess"] con su código unico ["cod_renipress"] para el calculo correcto.
+
+
+En otras palabras debes de realizar el calculo en base a la cantidad de viviendas totales entre la cantidad de Vivienda Inspeccionada, Vivienda Cerrada, Vivienda Renuente y Vivienda Deshabitada. Y asi proporcionarme la información correcta de cada tipo de cobertura.
+
+
+Como también debes proporcionarme mediante un dashboard la estadística según el tipo de recipientes teniendo en cuenta que solo debes obtener para este tipo desde "tipoActividadInspeccion (Tipo texto)" [Control larvario].
+Los recipientes son:
+Primer Tipo:
+tanque_alto_I
+tanque_alto_P
+tanque_alto_TQ
+tanque_alto_TF
+
+Segundo Tipo:
+tanque_bajo_I
+tanque_bajo_P
+tanque_bajo_TQ
+tanque_bajo_TF
+
+Tercer Tipo:
+barril_cilindro_I
+barril_cilindro_P
+barril_cilindro_TQ
+barril_cilindro_TF
+
+Cuarto Tipo:
+sanson_bidon_I
+sanson_bidon_P
+sanson_bidon_TQ
+sanson_bidon_TF
+
+Quinto Tipo:
+baldes_bateas_tinajas_I
+baldes_bateas_tinajas_P
+baldes_bateas_tinajas_TQ
+baldes_bateas_tinajas_TF
+
+Sexto Tipo:
+llantas_I
+llantas_P
+llantas_TQ
+llantas_TF
+
+Séptimo Tipo:
+floreros_maceteros_I
+floreros_maceteros_P
+floreros_maceteros_TQ
+floreros_maceteros_TF
+
+Octavo Tipo:
+latas_botellas_I
+latas_botellas_D
+latas_botellas_P
+latas_botellas_TQ
+latas_botellas_TF
+
+Noveno Tipo:
+otros_I
+otros_P
+otros_TQ
+otros_TF
+otros_D
+
+
+Decimo Tipo:
+inservibles_I
+inservibles_P
+inservibles_TQ
+inservibles_TF
+
+De los recipientes cada uno tiene una letra identificador al final, lo cual es lo siguiente:
+latas_botellas_I = "_I" es Recipiente(s) Inspeccionado(s)
+latas_botellas_D = "_D" es Recipiente(s) en Desuso(s)
+latas_botellas_P = "_P" es Recipiente(s) Positivo(s)
+latas_botellas_TQ = "_TQ" es Recipiente(s) con Tratamiento Quimico
+latas_botellas_TF = "_TF" es Recipiente(s) con Tratamiento Fisico
+
+Asi mismo, debes de sumar la cantidad del "consumo_larvicida" el cual es un Tipo decimal. Debes mostrar el consumo total y el consumo por "localidad_eess" (Tipo Texto).
+
+Para finalizar con "Control larvario" debes de realizar un filtro tambien por fechas (a parte del año) y la cantidad de Febriles por ["localidad_eess"] teniendo en cuenta su ["cod_renipress"].
+
+
+4). Finalmente, la tercera y ultima pestaña es: "Cerco"
+Ahora para la tercera pestaña que será "Cerco" debe de existir lo siguiente:
+Este sistema debe de ser capaz de:
+	1). procesar información de mas de 150000 registros
+
+En la tercera pestaña que será "Cerco" debe de existir lo siguiente:
+	1). filtrar por Año [el cual será tomado de "fecha_inspeccion (tipo de fecha y hora)"]
+2). Filtrar por Departamento [el cual será tomado de "departamento_x (Tipo Texto)"]
+3). Filtrar por Provincia [el cual será tomado de "nombre_prov (Tipo texto)"]
+4). Filtrar por Distrito [el cual será tomado de "distrito (Tipo Texto)"]
+5). Filtrar por Codigo de renipress [el cual será tomado de "cod_renipress (Tipo numerico)"]
+6). Filtrar por localidad del establecimiento de salud [el cual será tomado de "localidad_eess (Tipo Texto)"]
+Los filtros deben de ser mostradas en una lista desplegable el cual esté ordenado alfabéticamente (A-Z) o numérica (0-9) y tenga un buscador incorporado para escribir el nombre a filtrar; asi mismo, el sistema debe de ser dinamico, por cada filtro seleccionado debe de mostrar información en el dashboard o dashboards. 
+Para esta pestaña obtendrás los datos de la columna "tipoActividadInspeccion (Tipo texto)" el cual obtendrás el nombre "Control larvario".
+
+El sistema debe de realizar un calculo para poder obtener el porcentaje de cobertura de viviendas Inspeccionadas, cerradas, renuentes, deshabitadas y no intervenidas.
+Para ello también obtendrás los datos que te dejo al final de los establecimientos de salud con su código identificador (único) y su total de viviendas.
+
+Para esto obtendrás los datos de "tipoActividadInspeccion" el cual obtendrá solo los datos de "Control larvario" y de la columna "atencion_vivienda_indicador" (Tipo numerico) encontraras numeracion del 1 al 4, en donde:
+1 = Vivienda Inspeccionada
+2 = Vivienda Cerrada
+3 = Vivienda Renuente
+4 = Vivienda Deshabitada
+
+Y de la columna "viv_positiva" (Tipo numerico) encontraras dos numeros, siendo:
+0 = No es vivienda positiva
+1 = Si es vivienda positiva
+
+En ese sentido, debes realizar el calculo de cobertura de las viviendas Inspeccionadas, cerradas, renuentes, deshabitadas y no intervenidas de cada establecimiento de salud teniendo en cuenta la ["localidad_eess"] con su código único de ["cod_renipress"] para el calculo correcto.
+
+
+En otras palabras debes de realizar el calculo en base a la cantidad de viviendas totales entre la cantidad de Vivienda Inspeccionada, Vivienda Cerrada, Vivienda Renuente y Vivienda Deshabitada. Y asi proporcionarme la información correcta de cada tipo de cobertura.
+
+
+Como también debes proporcionarme mediante un dashboard la estadística según el tipo de recipientes teniendo en cuenta que solo debes obtener para este tipo desde "tipoActividadInspeccion (Tipo texto)" [Cerco].
+Los recipientes son:
+Primer Tipo:
+tanque_alto_I
+tanque_alto_P
+tanque_alto_TQ
+tanque_alto_TF
+
+Segundo Tipo:
+tanque_bajo_I
+tanque_bajo_P
+tanque_bajo_TQ
+tanque_bajo_TF
+
+Tercer Tipo:
+barril_cilindro_I
+barril_cilindro_P
+barril_cilindro_TQ
+barril_cilindro_TF
+
+Cuarto Tipo:
+sanson_bidon_I
+sanson_bidon_P
+sanson_bidon_TQ
+sanson_bidon_TF
+
+Quinto Tipo:
+baldes_bateas_tinajas_I
+baldes_bateas_tinajas_P
+baldes_bateas_tinajas_TQ
+baldes_bateas_tinajas_TF
+
+Sexto Tipo:
+llantas_I
+llantas_P
+llantas_TQ
+llantas_TF
+
+Séptimo Tipo:
+floreros_maceteros_I
+floreros_maceteros_P
+floreros_maceteros_TQ
+floreros_maceteros_TF
+
+Octavo Tipo:
+latas_botellas_I
+latas_botellas_D
+latas_botellas_P
+latas_botellas_TQ
+latas_botellas_TF
+
+Noveno Tipo:
+otros_I
+otros_P
+otros_TQ
+otros_TF
+otros_D
+
+
+Decimo Tipo:
+inservibles_I
+inservibles_P
+inservibles_TQ
+inservibles_TF
+
+De los recipientes cada uno tiene una letra identificador al final, lo cual es lo siguiente:
+latas_botellas_I = "_I" es Recipiente(s) Inspeccionado(s)
+latas_botellas_D = "_D" es Recipiente(s) en Desuso(s)
+latas_botellas_P = "_P" es Recipiente(s) Positivo(s)
+latas_botellas_TQ = "_TQ" es Recipiente(s) con Tratamiento Quimico
+latas_botellas_TF = "_TF" es Recipiente(s) con Tratamiento Fisico
+
+Asi mismo, debes de sumar la cantidad del "consumo_larvicida" el cual es un Tipo decimal. Debes mostrar el consumo total y el consumo por "localidad_eess" (Tipo Texto).
+
+Para finalizar con "Control larvario" debes de realizar un filtro tambien por fechas (a parte del año) y la cantidad de Febriles por ["localidad_eess"] teniendo en cuenta su ["cod_renipress"].
+
+
+5). Finalmente con el sistema, debe de ser totalmente responsivo con un botón para activar modo claro y oscuro. Un botón para importar o sección para arrastrar el archivo Excel, teniendo en cuenta que el archivo Excel en formato CSV pesará mas de 100MB. Si es necesario usar un servicio externo para esto asegúrate que se pueda con la versión gratuita y ten en cuenta que a esta web se tendrá acceso a nivel mundial y son varios quienes cargaran el archivo csv. Por lo cual debe mostrar la información en base al archivo cargado independientemente.
